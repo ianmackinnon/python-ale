@@ -128,7 +128,7 @@ class ale(object):
     delim = "\t"
 
     def _read_heading(self, line):
-        key, value = line.split(self.delim)
+        key, value = line.split(self.delim)[:2]
         if not key in headings:
             raise ValueError("Unknown heading: '%s'.", key)
         heading = headings[key]
