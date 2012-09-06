@@ -176,12 +176,12 @@ class ale(object):
                 continue
 
             if section == None:
-                if not line.lower() == "heading":
+                if not line.strip().lower() == "heading":
                     raise ValueError("First section should be 'Heading', not '%s'." % line)
                 section = "heading"
                 continue
             if section == "heading":
-                if line.lower() == "column":
+                if line.strip().lower() == "column":
                     for key, heading in headings.items():
                         if "required" in heading and heading["required"]:
                             if not getattr(self, heading['name']):
@@ -191,7 +191,7 @@ class ale(object):
                 self._read_heading(line)
                 continue
             if section == "column":
-                if line.lower() == "data":
+                if line.strip().lower() == "data":
                     for key, column in columns.items():
                         if "required" in column and column["required"]:
                             if not key in self.columns:
