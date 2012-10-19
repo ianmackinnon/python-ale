@@ -128,7 +128,10 @@ class ale(object):
     delim = "\t"
 
     def _read_heading(self, line):
-        key, value = line.split(self.delim)[:2]
+        try:
+            key, value = line.split(self.delim)[:2]
+        except ValueError as e:
+            raise ValueError("Expected two values separated by a tab: '%s'", repr(line))
         if not key in headings:
             raise ValueError("Unknown heading: '%s'.", key)
         heading = headings[key]
