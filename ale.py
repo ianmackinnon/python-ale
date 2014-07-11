@@ -136,7 +136,7 @@ class ale(object):
             raise ValueError("Unknown heading: '%s'.", key)
         heading = headings[key]
         
-        if heading["options"]:
+        if heading.get("options", None):
             for option in heading["options"]:
                 if value.lower() == option.lower():
                     setattr(self, heading['name'], option)
